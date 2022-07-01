@@ -1,0 +1,44 @@
+Create database store;
+use store;
+
+CREATE TABLE Account (
+  ID         int(10) NOT NULL AUTO_INCREMENT, 
+  Username   varchar(255), 
+  Password   varchar(255), 
+  CustomerId int(10) NOT NULL, 
+  PRIMARY KEY (ID)) ENGINE=InnoDB CHARACTER SET UTF8;
+CREATE TABLE FullName (
+  ID         int(10) NOT NULL AUTO_INCREMENT, 
+  FullName   varchar(255), 
+  LastName   varchar(255), 
+  FirstName  varchar(255), 
+  CustomerId int(10) NOT NULL, 
+  PRIMARY KEY (ID)) ENGINE=InnoDB CHARACTER SET UTF8;
+CREATE TABLE Address (
+  ID         int(10) NOT NULL AUTO_INCREMENT, 
+  Number     varchar(255), 
+  Street     varchar(255), 
+  District   varchar(255), 
+  City       varchar(255), 
+  Country    varchar(255), 
+  CustomerId int(10) NOT NULL, 
+  PRIMARY KEY (ID)) ENGINE=InnoDB CHARACTER SET UTF8;
+CREATE TABLE Customer (
+  ID int(10) NOT NULL AUTO_INCREMENT, 
+  Phone varchar(255), 
+  PRIMARY KEY (Id)) ENGINE=InnoDB CHARACTER SET UTF8;
+CREATE TABLE CustomerNew (
+  Registered date, 
+  Note       varchar(255), 
+  CustomerId int(10) NOT NULL, 
+  PRIMARY KEY (CustomerId)) ENGINE=InnoDB CHARACTER SET UTF8;
+CREATE TABLE CustomerMember (
+  Card        varchar(255), 
+  MemberGrade int(10) NOT NULL, 
+  CustomerId  int(10) NOT NULL, 
+  PRIMARY KEY (CustomerId)) ENGINE=InnoDB CHARACTER SET UTF8;
+ALTER TABLE Account ADD CONSTRAINT FKAccount437921 FOREIGN KEY (CustomerId) REFERENCES Customer (Id);
+ALTER TABLE FullName ADD CONSTRAINT FKFullName370764 FOREIGN KEY (CustomerId) REFERENCES Customer (Id);
+ALTER TABLE Address ADD CONSTRAINT FKAddress64774 FOREIGN KEY (CustomerId) REFERENCES Customer (Id);
+ALTER TABLE CustomerNew ADD CONSTRAINT FKCustomerNe893702 FOREIGN KEY (CustomerId) REFERENCES Customer (Id);
+ALTER TABLE CustomerMember ADD CONSTRAINT FKCustomerMe934852 FOREIGN KEY (CustomerId) REFERENCES Customer (Id);
